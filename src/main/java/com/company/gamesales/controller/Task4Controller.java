@@ -37,7 +37,7 @@ public class Task4Controller {
 			Instant start = Instant.now();
 			List<DailyGamesSalesRevenueDto> dailyTotalSales = service.getDailyTotalSales(from, to);
 			Instant end = Instant.now();
-			logger.info("dailyTotalSales took {} ms", Duration.between(start, end).toMillis());
+			logger.info("dailyTotalSales {}/{} took {} ms", from, to, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(dailyTotalSales);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -54,7 +54,7 @@ public class Task4Controller {
 			Instant start = Instant.now();
 			List<DailyGamesSalesRevenueByGameNoDto> dailyTotalSalesByGameNo = service.getDailyTotalSalesByGameNo(from, to, gameNo);
 			Instant end = Instant.now();
-			logger.info("dailyTotalSalesByGameNo took {} ms", Duration.between(start, end).toMillis());
+			logger.info("dailyTotalSalesByGameNo {}/{}/{} took {} ms", from, to, gameNo, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(dailyTotalSalesByGameNo);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

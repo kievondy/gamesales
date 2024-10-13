@@ -39,7 +39,7 @@ public class Task5Controller {
 					.body(resource);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting Csv template");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error generateCsv");
 		}
 	}
 

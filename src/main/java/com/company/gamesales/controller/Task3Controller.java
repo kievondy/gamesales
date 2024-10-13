@@ -34,7 +34,7 @@ public class Task3Controller {
 			Instant start = Instant.now();
 			Page<GameSales> gameSales = service.getGameSales(pageNo);
 			Instant end = Instant.now();
-			logger.info("gameSales took {} ms", Duration.between(start, end).toMillis());
+			logger.info("gameSales pageNo {} took {} ms", pageNo, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(gameSales);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -51,7 +51,7 @@ public class Task3Controller {
 			Instant start = Instant.now();
 			Page<GameSales> gameSalesWhereSaleDateBetween = service.getGameSalesWhereSaleDateBetween(from, to, pageNo);
 			Instant end = Instant.now();
-			logger.info("gameSalesWhereSaleDateBetween took {} ms", Duration.between(start, end).toMillis());
+			logger.info("gameSalesWhereSaleDateBetween {}/{}/{} took {} ms", from, to, pageNo, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(gameSalesWhereSaleDateBetween);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -65,7 +65,7 @@ public class Task3Controller {
 			Instant start = Instant.now();
 			Page<GameSales> gameSalesWhereSalePriceLessThan = service.getGameSalesWhereSalePriceLessThan(salePrice, pageNo);
 			Instant end = Instant.now();
-			logger.info("gameSalesWhereSalePriceLessThan took {} ms", Duration.between(start, end).toMillis());
+			logger.info("gameSalesWhereSalePriceLessThan {}/{} took {} ms", salePrice, pageNo, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(gameSalesWhereSalePriceLessThan);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -80,7 +80,7 @@ public class Task3Controller {
 			Instant start = Instant.now();
 			Page<GameSales> gameSalesWhereSalePriceMoreThan = service.getGameSalesWhereSalePriceMoreThan(salePrice, pageNo);
 			Instant end = Instant.now();
-			logger.info("gameSalesWhereSalePriceMoreThan took {} ms", Duration.between(start, end).toMillis());
+			logger.info("gameSalesWhereSalePriceMoreThan {}/{} took {} ms", salePrice, pageNo, Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(gameSalesWhereSalePriceMoreThan);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

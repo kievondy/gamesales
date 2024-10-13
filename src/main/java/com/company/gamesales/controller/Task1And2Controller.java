@@ -39,7 +39,7 @@ public class Task1And2Controller {
 			Instant start = Instant.now();
 			ImportTracking importCsv = service.importCsv(csvFile);
 			Instant end = Instant.now();
-			logger.info("CSV Import took {} ms", Duration.between(start, end).toMillis());
+			logger.info("CSV Import {} records took {} ms", importCsv.getImportCount(), Duration.between(start, end).toMillis());
 			return ResponseEntity.ok(importCsv);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
