@@ -41,7 +41,7 @@ To start the application, go to gamesales/target directory and run:
 > java -jar gamesales-0.0.1-SNAPSHOT.jar
 >
 
-As an alternative to MySQL, this application also has the capability to run using H2 In-memory database, without MySQL. To run this application using H2 database instead, run the following:
+As an alternative to MySQL, this application also has the capability to run using H2 In-memory database (without MySQL). To run this application using H2 database instead, run the following:
 >
 > java -Dspring.profiles.active=h2 -jar gamesales-0.0.1-SNAPSHOT.jar
 >
