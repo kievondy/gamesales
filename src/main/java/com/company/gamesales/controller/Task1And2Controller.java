@@ -43,7 +43,7 @@ public class Task1And2Controller {
 			return ResponseEntity.ok(importCsv);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while importing Csv file");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while importing Csv file " + e.getMessage());
 		}
 	}
 	
@@ -57,7 +57,7 @@ public class Task1And2Controller {
 			return ResponseEntity.ok(importCsv);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while importing Csv file");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while importing Csv file " + e.getMessage());
 		}
 	}
 
