@@ -43,7 +43,7 @@ public class GameSalesImportCounter {
 
 	private ImportTracking updateTracking() {
 		logger.info("All records imported, updating ImportTracking status");
-		importTracking.setImportStatus(ImportStatus.SUCCESSFULLY_LOADED);
+		importTracking.setImportStatus(ImportStatus.IMPORT_SUCCESSFUL);
 		return importTrackingRepository.save(importTracking);
 	}
 

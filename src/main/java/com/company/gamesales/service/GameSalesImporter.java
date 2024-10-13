@@ -66,7 +66,7 @@ public class GameSalesImporter implements DisposableBean {
 		ImportTracking saveIt = importTrackingRepository.save(importTracking);
 		games.stream().forEach(g -> g.setImportTracking(saveIt));
 		importGameSales(games);
-		saveIt.setImportStatus(ImportStatus.SUCCESSFULLY_LOADED);
+		saveIt.setImportStatus(ImportStatus.IMPORT_SUCCESSFUL);
 		return importTrackingRepository.save(saveIt);
 	}
 

@@ -1,5 +1,7 @@
 package com.company.gamesales.model;
 
 public enum ImportStatus {
-	SUCCESSFULLY_LOADED, RECEIVED
+	 RECEIVED,
+	 IMPORT_SUCCESSFUL,
+	 IMPORT_INCOMPLETE
 }

@@ -21,6 +21,7 @@ import org.apache.commons.rng.simple.RandomSource;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 
+import com.company.gamesales.exception.InvalidDataException;
 import com.company.gamesales.model.GameSales;
 
 import de.siegmar.fastcsv.reader.CsvReader;
@@ -49,7 +50,6 @@ public class CsvParser {
 	}
 
 	public static List<GameSales> parseRequest(InputStream inputStream) throws IOException {
-
 		CsvReader<NamedCsvRecord> ofNamedCsvRecord = CsvReader.builder()
 				.ofNamedCsvRecord(new InputStreamReader(inputStream));
 		return ofNamedCsvRecord.stream().map(rec -> {
@@ -62,16 +62,34 @@ public class CsvParser {
 			String tax = rec.getField(6);
 			String salePrice = rec.getField(7);
 			String dateOfSale = rec.getField(8);
-			Date dateOfSaleDt = null;
-			try {
-				dateOfSaleDt = formatter.get().parse(dateOfSale);
-			} catch (ParseException e) {
-			}
-			GameSales gameSales = new GameSales(Integer.parseInt(id), Integer.parseInt(gameNo), gameName, gameCode,
-					Integer.parseInt(type), Double.parseDouble(costPrice), Double.parseDouble(tax),
-					Double.parseDouble(salePrice), dateOfSaleDt);
+			GameSales gameSales = new GameSales(checkInt(id), checkInt(gameNo), gameName, gameCode, checkInt(type),
+					checkDouble(costPrice), checkDouble(tax), checkDouble(salePrice), checkDate(dateOfSale));
 			return gameSales;
 		}).collect(Collectors.toList());
+	}
+
+	private static Date checkDate(String str) {
+		try {
+			return formatter.get().parse(str);
+		} catch (ParseException e) {
+			throw new InvalidDataException("Invalid data " + str);
+		}
+	}
+
+	private static double checkDouble(String str) {
+		try {
+			return Double.parseDouble(str);
+		} catch (Exception e) {
+			throw new InvalidDataException("Invalid data " + str);
+		}
+	}
+
+	private static int checkInt(String str) {
+		try {
+			return Integer.parseInt(str);
+		} catch (Exception e) {
+			throw new InvalidDataException("Invalid data " + str);
+		}
 	}
 
 	private static String[] csvHeader() {
