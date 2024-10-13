@@ -67,11 +67,11 @@ Available end points:
 
 
 ### Performance
-When it is specified that queries must be completed under 50ms or import must be completed under 20s, it is a bit vague requirement (apologies), because there are a few factors affecting performance:
+When it is specified that queries must be completed under 50ms or import must be completed under 20s, the requirement is a bit incomplete (apologies), because there are a few factors affecting performance:
 - The code (of course)
 - Data set
 - Hardware
-- Network
+- Network (probably not so much effect)
 
 Tests are done against 2 different data sets.
 - 1st one importing 10k records, then queries are run against them. Please see in screenshot below line "Imported 10000 records", then several query results underneath that.
