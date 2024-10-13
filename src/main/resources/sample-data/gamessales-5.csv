@@ -1,0 +1,6 @@
+id,gameNo,gameName,gameCode,type,costPrice,tax,salePrice,dateOfSale
+1,991,Helldivers,HD1,1,66.34,5.9706,72.3106,2024-10-09
+2,882,Call of duty,CD1,1,73.12,6.5808,79.7008,2024-10-09
+3,774,Dragon,DG2,2,81.2,7.308,88.508,2024-10-09
+4,553,Hogwarts Legacy,HL1,2,48.12,4.3308,52.4508,2024-10-09
+5,662,Minecraft,MC1,1,56.12,5.0508,61.1708,2024-10-09
