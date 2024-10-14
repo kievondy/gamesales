@@ -69,5 +69,5 @@ To show that that performance is affected by data set, tests are done against 2 
 - Queries against 10k records. Please see in screenshot below line "Imported 10000 records", then several query results after that.
 - Queries against 1 million records. Please see in screenshot below line "Imported 1000000 records", then several query results after that.
 
-Performance Result:
+### Performance Result:
 <img src="doc/performance.PNG" width="1000"/>
