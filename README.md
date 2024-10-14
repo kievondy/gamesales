@@ -21,10 +21,10 @@ Requirements for building and running this application:
 #### Database setup
 
 - This application requires connectivity to MySQL database. Either a new or existing database is needed.
-Configuration for the database connectivity can be found in src/main/resource/application.properties file.
-- **Please edit and amend accordingly, especially for datasource url, username and password**
 - To create the tables (and indexes), SQL script (create-db.sql) can be found in src/main/resource directory.
 - **Please execute the script against the database that will be used for this application**
+- Configuration for the database connectivity can be found in src/main/resource/application.properties file.
+- **Please edit and amend accordingly, especially for datasource url, username and password**
 
 #### Build the application
 
@@ -41,7 +41,7 @@ To start the application, go to gamesales/target directory and run:
 > java -jar gamesales-0.0.1-SNAPSHOT.jar
 >
 
-As an alternative to MySQL, this application also has the capability to run using H2 In-memory database, without MySQL. To run this application using H2 database instead, run the following:
+As an alternative to MySQL, this application also has the capability to run using H2 In-memory database (without MySQL). To run this application using H2 database instead, run the following:
 >
 > java -Dspring.profiles.active=h2 -jar gamesales-0.0.1-SNAPSHOT.jar
 >
@@ -67,6 +67,15 @@ Available end points:
 
 
 ### Performance
+When it is specified that queries must be completed under 50ms or import must be completed under 20s, the requirement is a bit incomplete (apologies), because there are a few factors affecting performance:
+- The code (of course)
+- Data set
+- Hardware
+- Network (probably not so much effect)
+
+Tests are done against 2 different data sets.
+- 1st one importing 10k records, then queries are run against them. Please see in screenshot below line "Imported 10000 records", then several query results underneath that.
+- 2nd one importing 1 million records, then queries are run against them. Please see in screenshot below line "Imported 1000000 records", then several query results underneath that.
+
 Performance Result:
 <img src="doc/performance.PNG" width="1000"/>
-
