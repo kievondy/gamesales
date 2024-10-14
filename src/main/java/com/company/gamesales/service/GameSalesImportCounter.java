@@ -1,5 +1,6 @@
 package com.company.gamesales.service;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ public class GameSalesImportCounter {
 	private final ImportTracking importTracking;
 	private final int target;
 	private final AtomicInteger currentCount = new AtomicInteger(0);
+	private final AtomicBoolean started = new AtomicBoolean(false);
 
 	public GameSalesImportCounter(ImportTrackingRepository importTrackingRepository, ImportTracking importTracking,
 			int target) {
@@ -28,8 +30,12 @@ public class GameSalesImportCounter {
 	public void addCount(int count) {
 		this.currentCount.getAndAdd(count);
 		logger.info("Record imported {}", currentCount.get());
+		if (!started.get()) {
+			started.getAndSet(true);
+			updateTrackingIncomplete();
+		}
 		if (currentCount.get() >= target) {
-			updateTracking();
+			updateTrackingSuccessful();
 		}
 	}
 
@@ -41,9 +47,15 @@ public class GameSalesImportCounter {
 		return target;
 	}
 
-	private ImportTracking updateTracking() {
-		logger.info("All records imported, updating ImportTracking status");
+	private ImportTracking updateTrackingSuccessful() {
+		logger.info("All records imported, updating ImportTracking status to Successful");
 		importTracking.setImportStatus(ImportStatus.IMPORT_SUCCESSFUL);
+		return importTrackingRepository.save(importTracking);
+	}
+
+	private ImportTracking updateTrackingIncomplete() {
+		logger.info("Async import started, updating ImportTracking status to Incomplete");
+		importTracking.setImportStatus(ImportStatus.IMPORT_INCOMPLETE);
 		return importTrackingRepository.save(importTracking);
 	}
 
